@@ -61,6 +61,10 @@
 			this.WinsLabelForPlayerTwo = new System.Windows.Forms.Label();
 			this.WinsLabelForPlayerOne = new System.Windows.Forms.Label();
 			this.WinsLabelForDraw = new System.Windows.Forms.Label();
+			this.playWithBotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.easyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.impossibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.PlayersNameGroupBox.SuspendLayout();
 			this.PlayerXGroupBox.SuspendLayout();
@@ -73,7 +77,8 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.gameToolStripMenuItem,
-            this.helpToolStripMenuItem});
+            this.helpToolStripMenuItem,
+            this.playWithBotToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(675, 24);
@@ -407,11 +412,42 @@
 			this.WinsLabelForDraw.TabIndex = 21;
 			this.WinsLabelForDraw.Text = "Draw: ";
 			// 
+			// playWithBotToolStripMenuItem
+			// 
+			this.playWithBotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.easyToolStripMenuItem,
+            this.mediumToolStripMenuItem,
+            this.impossibleToolStripMenuItem});
+			this.playWithBotToolStripMenuItem.Name = "playWithBotToolStripMenuItem";
+			this.playWithBotToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+			this.playWithBotToolStripMenuItem.Text = "Play with Bot";
+			// 
+			// easyToolStripMenuItem
+			// 
+			this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
+			this.easyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.easyToolStripMenuItem.Text = "Easy";
+			this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
+			// 
+			// mediumToolStripMenuItem
+			// 
+			this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
+			this.mediumToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.mediumToolStripMenuItem.Text = "Medium";
+			this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
+			// 
+			// impossibleToolStripMenuItem
+			// 
+			this.impossibleToolStripMenuItem.Name = "impossibleToolStripMenuItem";
+			this.impossibleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.impossibleToolStripMenuItem.Text = "Impossible";
+			this.impossibleToolStripMenuItem.Click += new System.EventHandler(this.impossibleToolStripMenuItem_Click);
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(675, 361);
+			this.ClientSize = new System.Drawing.Size(675, 355);
 			this.Controls.Add(this.WinsLabelForDraw);
 			this.Controls.Add(this.WinsLabelForPlayerTwo);
 			this.Controls.Add(this.WinsLabelForPlayerOne);
@@ -477,6 +513,10 @@
 		private System.Windows.Forms.Label WinsLabelForPlayerTwo;
 		private System.Windows.Forms.Label WinsLabelForPlayerOne;
 		private System.Windows.Forms.Label WinsLabelForDraw;
+		private System.Windows.Forms.ToolStripMenuItem playWithBotToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem easyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem mediumToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem impossibleToolStripMenuItem;
 	}
 }
 
