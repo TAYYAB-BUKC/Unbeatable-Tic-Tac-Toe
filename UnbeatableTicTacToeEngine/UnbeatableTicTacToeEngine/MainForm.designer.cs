@@ -30,11 +30,11 @@
 		{
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resetGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.aboutTicTacToeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Button1 = new System.Windows.Forms.Button();
 			this.Button3 = new System.Windows.Forms.Button();
@@ -47,13 +47,13 @@
 			this.Button7 = new System.Windows.Forms.Button();
 			this.label1 = new System.Windows.Forms.Label();
 			this.PlayersNameGroupBox = new System.Windows.Forms.GroupBox();
-			this.label2 = new System.Windows.Forms.Label();
-			this.label3 = new System.Windows.Forms.Label();
-			this.PlayerOneName = new System.Windows.Forms.TextBox();
 			this.PlayerTwoName = new System.Windows.Forms.TextBox();
+			this.PlayerOneName = new System.Windows.Forms.TextBox();
+			this.label3 = new System.Windows.Forms.Label();
+			this.label2 = new System.Windows.Forms.Label();
 			this.PlayerXGroupBox = new System.Windows.Forms.GroupBox();
-			this.PlayerOneXRadioButton = new System.Windows.Forms.RadioButton();
 			this.PlayerTwoXRadioButton = new System.Windows.Forms.RadioButton();
+			this.PlayerOneXRadioButton = new System.Windows.Forms.RadioButton();
 			this.StartPlayerGroupBox = new System.Windows.Forms.GroupBox();
 			this.PlayerTwoStartRadioButton = new System.Windows.Forms.RadioButton();
 			this.PlayerOneStartRadioButton = new System.Windows.Forms.RadioButton();
@@ -85,6 +85,13 @@
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
 			this.fileToolStripMenuItem.Text = "File";
 			// 
+			// exitToolStripMenuItem
+			// 
+			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+			this.exitToolStripMenuItem.Size = new System.Drawing.Size(93, 22);
+			this.exitToolStripMenuItem.Text = "Exit";
+			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			// 
 			// gameToolStripMenuItem
 			// 
 			this.gameToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -93,14 +100,6 @@
 			this.gameToolStripMenuItem.Name = "gameToolStripMenuItem";
 			this.gameToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
 			this.gameToolStripMenuItem.Text = "Game";
-			// 
-			// helpToolStripMenuItem
-			// 
-			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutTicTacToeToolStripMenuItem});
-			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-			this.helpToolStripMenuItem.Text = "Help";
 			// 
 			// startGameToolStripMenuItem
 			// 
@@ -116,17 +115,18 @@
 			this.resetGameToolStripMenuItem.Text = "Reset Game";
 			this.resetGameToolStripMenuItem.Click += new System.EventHandler(this.resetGameToolStripMenuItem_Click);
 			// 
-			// exitToolStripMenuItem
+			// helpToolStripMenuItem
 			// 
-			this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-			this.exitToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.exitToolStripMenuItem.Text = "Exit";
-			this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.aboutTicTacToeToolStripMenuItem});
+			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+			this.helpToolStripMenuItem.Text = "Help";
 			// 
 			// aboutTicTacToeToolStripMenuItem
 			// 
 			this.aboutTicTacToeToolStripMenuItem.Name = "aboutTicTacToeToolStripMenuItem";
-			this.aboutTicTacToeToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.aboutTicTacToeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
 			this.aboutTicTacToeToolStripMenuItem.Text = "About Tic Tac Toe";
 			// 
 			// Button1
@@ -137,6 +137,7 @@
 			this.Button1.Size = new System.Drawing.Size(75, 72);
 			this.Button1.TabIndex = 1;
 			this.Button1.UseVisualStyleBackColor = true;
+			this.Button1.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button3
 			// 
@@ -146,6 +147,7 @@
 			this.Button3.Size = new System.Drawing.Size(75, 72);
 			this.Button3.TabIndex = 2;
 			this.Button3.UseVisualStyleBackColor = true;
+			this.Button3.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button2
 			// 
@@ -155,6 +157,7 @@
 			this.Button2.Size = new System.Drawing.Size(75, 72);
 			this.Button2.TabIndex = 3;
 			this.Button2.UseVisualStyleBackColor = true;
+			this.Button2.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button5
 			// 
@@ -164,6 +167,7 @@
 			this.Button5.Size = new System.Drawing.Size(75, 72);
 			this.Button5.TabIndex = 6;
 			this.Button5.UseVisualStyleBackColor = true;
+			this.Button5.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button6
 			// 
@@ -173,6 +177,7 @@
 			this.Button6.Size = new System.Drawing.Size(75, 72);
 			this.Button6.TabIndex = 5;
 			this.Button6.UseVisualStyleBackColor = true;
+			this.Button6.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button4
 			// 
@@ -182,6 +187,7 @@
 			this.Button4.Size = new System.Drawing.Size(75, 72);
 			this.Button4.TabIndex = 4;
 			this.Button4.UseVisualStyleBackColor = true;
+			this.Button4.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button8
 			// 
@@ -191,6 +197,7 @@
 			this.Button8.Size = new System.Drawing.Size(75, 72);
 			this.Button8.TabIndex = 9;
 			this.Button8.UseVisualStyleBackColor = true;
+			this.Button8.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button9
 			// 
@@ -200,6 +207,7 @@
 			this.Button9.Size = new System.Drawing.Size(75, 72);
 			this.Button9.TabIndex = 8;
 			this.Button9.UseVisualStyleBackColor = true;
+			this.Button9.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// Button7
 			// 
@@ -209,6 +217,7 @@
 			this.Button7.Size = new System.Drawing.Size(75, 72);
 			this.Button7.TabIndex = 7;
 			this.Button7.UseVisualStyleBackColor = true;
+			this.Button7.Click += new System.EventHandler(this.Button_Click);
 			// 
 			// label1
 			// 
@@ -234,16 +243,23 @@
 			this.PlayersNameGroupBox.TabStop = false;
 			this.PlayersNameGroupBox.Text = "Players Name";
 			// 
-			// label2
+			// PlayerTwoName
 			// 
-			this.label2.AutoSize = true;
-			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.label2.Location = new System.Drawing.Point(6, 22);
-			this.label2.Name = "label2";
-			this.label2.Size = new System.Drawing.Size(121, 18);
-			this.label2.TabIndex = 12;
-			this.label2.Text = "PlayerOne Name";
+			this.PlayerTwoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.PlayerTwoName.Location = new System.Drawing.Point(144, 49);
+			this.PlayerTwoName.Name = "PlayerTwoName";
+			this.PlayerTwoName.Size = new System.Drawing.Size(187, 24);
+			this.PlayerTwoName.TabIndex = 15;
+			this.PlayerTwoName.Text = "Player Two";
+			// 
+			// PlayerOneName
+			// 
+			this.PlayerOneName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.PlayerOneName.Location = new System.Drawing.Point(144, 19);
+			this.PlayerOneName.Name = "PlayerOneName";
+			this.PlayerOneName.Size = new System.Drawing.Size(187, 24);
+			this.PlayerOneName.TabIndex = 14;
+			this.PlayerOneName.Text = "Player One";
 			// 
 			// label3
 			// 
@@ -256,23 +272,16 @@
 			this.label3.TabIndex = 13;
 			this.label3.Text = "PlayerTwo Name";
 			// 
-			// PlayerOneName
+			// label2
 			// 
-			this.PlayerOneName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PlayerOneName.Location = new System.Drawing.Point(144, 19);
-			this.PlayerOneName.Name = "PlayerOneName";
-			this.PlayerOneName.Size = new System.Drawing.Size(187, 24);
-			this.PlayerOneName.TabIndex = 14;
-			this.PlayerOneName.Text = "Player One";
-			// 
-			// PlayerTwoName
-			// 
-			this.PlayerTwoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PlayerTwoName.Location = new System.Drawing.Point(144, 49);
-			this.PlayerTwoName.Name = "PlayerTwoName";
-			this.PlayerTwoName.Size = new System.Drawing.Size(187, 24);
-			this.PlayerTwoName.TabIndex = 15;
-			this.PlayerTwoName.Text = "Player Two";
+			this.label2.AutoSize = true;
+			this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label2.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label2.Location = new System.Drawing.Point(6, 22);
+			this.label2.Name = "label2";
+			this.label2.Size = new System.Drawing.Size(121, 18);
+			this.label2.TabIndex = 12;
+			this.label2.Text = "PlayerOne Name";
 			// 
 			// PlayerXGroupBox
 			// 
@@ -284,6 +293,17 @@
 			this.PlayerXGroupBox.TabIndex = 16;
 			this.PlayerXGroupBox.TabStop = false;
 			this.PlayerXGroupBox.Text = "X For Player";
+			// 
+			// PlayerTwoXRadioButton
+			// 
+			this.PlayerTwoXRadioButton.AutoSize = true;
+			this.PlayerTwoXRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.PlayerTwoXRadioButton.Location = new System.Drawing.Point(178, 28);
+			this.PlayerTwoXRadioButton.Name = "PlayerTwoXRadioButton";
+			this.PlayerTwoXRadioButton.Size = new System.Drawing.Size(107, 24);
+			this.PlayerTwoXRadioButton.TabIndex = 15;
+			this.PlayerTwoXRadioButton.Text = "Player Two ";
+			this.PlayerTwoXRadioButton.UseVisualStyleBackColor = true;
 			// 
 			// PlayerOneXRadioButton
 			// 
@@ -297,17 +317,6 @@
 			this.PlayerOneXRadioButton.TabStop = true;
 			this.PlayerOneXRadioButton.Text = "Player One ";
 			this.PlayerOneXRadioButton.UseVisualStyleBackColor = true;
-			// 
-			// PlayerTwoXRadioButton
-			// 
-			this.PlayerTwoXRadioButton.AutoSize = true;
-			this.PlayerTwoXRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PlayerTwoXRadioButton.Location = new System.Drawing.Point(178, 28);
-			this.PlayerTwoXRadioButton.Name = "PlayerTwoXRadioButton";
-			this.PlayerTwoXRadioButton.Size = new System.Drawing.Size(107, 24);
-			this.PlayerTwoXRadioButton.TabIndex = 15;
-			this.PlayerTwoXRadioButton.Text = "Player Two ";
-			this.PlayerTwoXRadioButton.UseVisualStyleBackColor = true;
 			// 
 			// StartPlayerGroupBox
 			// 
