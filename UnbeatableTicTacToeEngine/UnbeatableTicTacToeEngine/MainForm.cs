@@ -22,8 +22,9 @@ namespace UnbeatableTicTacToeEngine
 		private List<Button> iData;
 		private bool playBot = false;
 		private bool gameEnd = false;
+		private int lastMove = -1;
 		
-			public MainForm()
+		public MainForm()
 		{
 			InitializeComponent();
 			ButtonsPanel.Enabled = false;
@@ -126,9 +127,9 @@ namespace UnbeatableTicTacToeEngine
 		}
 
 		private void Button_Click(object sender, EventArgs e)
-		{ 
-
+		{
 			Button button = (Button)sender;
+			StoreMove(button);
 
 			if (playerOneTurn)
 			{
@@ -167,6 +168,8 @@ namespace UnbeatableTicTacToeEngine
 					#region For Bot
 					if (botType == (int)BotType.Easy && buttonClicksCounter != 9)
 					{
+						//implementation for Easy Bot
+						#region EasyBot
 						//implementation for Easy Bot
 						if (playBot)
 						{
@@ -212,17 +215,150 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
-								EasyBot();
+								RunEasyBot();
 							}
 						}
-						//ChangeButtonBackgroundImage(iLastMove);
-						//bEnableBot = false;
-						//SetNextTurn();
-
+						else
+						{
+							if ((Button1.Text == Button2.Text) && (Button2.Text == Button3.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button4.Text == Button5.Text) && (Button5.Text == Button6.Text) && (!Button4.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button7.Text == Button8.Text) && (Button8.Text == Button9.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button4.Text) && (Button4.Text == Button7.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button2.Text == Button5.Text) && (Button5.Text == Button8.Text) && (!Button2.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button6.Text) && (Button6.Text == Button9.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button5.Text) && (Button5.Text == Button9.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button5.Text) && (Button5.Text == Button7.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+						}
+						#endregion
 					}
 					else if (botType == (int)BotType.Medium && buttonClicksCounter != 9)
 					{
-
+						//implementation for Medium Bot
+						#region MediumBot
+						//implementation for Medium Bot
+						if (playBot)
+						{
+							if ((Button1.Text == Button2.Text) && (Button2.Text == Button3.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button4.Text == Button5.Text) && (Button5.Text == Button6.Text) && (!Button4.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button7.Text == Button8.Text) && (Button8.Text == Button9.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button4.Text) && (Button4.Text == Button7.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button2.Text == Button5.Text) && (Button5.Text == Button8.Text) && (!Button2.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button6.Text) && (Button6.Text == Button9.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button5.Text) && (Button5.Text == Button9.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button5.Text) && (Button5.Text == Button7.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else
+							{
+								RunMediumBot();
+							}
+						}
+						else
+						{
+							if ((Button1.Text == Button2.Text) && (Button2.Text == Button3.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button4.Text == Button5.Text) && (Button5.Text == Button6.Text) && (!Button4.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button7.Text == Button8.Text) && (Button8.Text == Button9.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button4.Text) && (Button4.Text == Button7.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button2.Text == Button5.Text) && (Button5.Text == Button8.Text) && (!Button2.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button6.Text) && (Button6.Text == Button9.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button5.Text) && (Button5.Text == Button9.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button5.Text) && (Button5.Text == Button7.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+						}
+						#endregion
 					}
 					else if (botType == (int)BotType.Medium && buttonClicksCounter != 9)
 					{
@@ -285,6 +421,7 @@ namespace UnbeatableTicTacToeEngine
 					#region For Bot
 					if (botType == (int)BotType.Easy)
 					{
+						#region EasyBot
 						//implementation for Easy Bot
 						if (playBot)
 						{
@@ -330,15 +467,151 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
-								EasyBot();
+								RunEasyBot();
 							}
 						}
+						else
+						{
+							if ((Button1.Text == Button2.Text) && (Button2.Text == Button3.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button4.Text == Button5.Text) && (Button5.Text == Button6.Text) && (!Button4.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button7.Text == Button8.Text) && (Button8.Text == Button9.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button4.Text) && (Button4.Text == Button7.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button2.Text == Button5.Text) && (Button5.Text == Button8.Text) && (!Button2.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button6.Text) && (Button6.Text == Button9.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button5.Text) && (Button5.Text == Button9.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button5.Text) && (Button5.Text == Button7.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+						}
+						#endregion
 					}
 					else if (botType == (int)BotType.Medium)
 					{
-
+						#region MediumBot
+						//implementation for Medium Bot
+						if (playBot)
+						{
+							if ((Button1.Text == Button2.Text) && (Button2.Text == Button3.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button4.Text == Button5.Text) && (Button5.Text == Button6.Text) && (!Button4.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button7.Text == Button8.Text) && (Button8.Text == Button9.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button4.Text) && (Button4.Text == Button7.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button2.Text == Button5.Text) && (Button5.Text == Button8.Text) && (!Button2.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button6.Text) && (Button6.Text == Button9.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button5.Text) && (Button5.Text == Button9.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button5.Text) && (Button5.Text == Button7.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else
+							{
+								RunMediumBot();
+							}
+						}
+						else
+						{
+							if ((Button1.Text == Button2.Text) && (Button2.Text == Button3.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button4.Text == Button5.Text) && (Button5.Text == Button6.Text) && (!Button4.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button7.Text == Button8.Text) && (Button8.Text == Button9.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button4.Text) && (Button4.Text == Button7.Text) && (!Button7.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button2.Text == Button5.Text) && (Button5.Text == Button8.Text) && (!Button2.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button6.Text) && (Button6.Text == Button9.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button1.Text == Button5.Text) && (Button5.Text == Button9.Text) && (!Button1.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+							else if ((Button3.Text == Button5.Text) && (Button5.Text == Button7.Text) && (!Button3.Enabled))
+							{
+								WinnerMessage();
+								ClearButtonsTextAndEnable("");
+							}
+						}
+						#endregion
 					}
-					else if (botType == (int)BotType.Medium)
+					else if (botType == (int)BotType.Impossible)
 					{
 
 					}
@@ -386,11 +659,6 @@ namespace UnbeatableTicTacToeEngine
 							WinnerMessage();
 							ClearButtonsTextAndEnable("");
 						}
-						else
-						{
-							DrawMessage();
-						}
-
 						#endregion
 					}
 				}
@@ -467,7 +735,7 @@ namespace UnbeatableTicTacToeEngine
 			playBot = true;
 		}
 
-		private void EasyBot()
+		private void RunEasyBot()
 		{
 			if (playBot)
 			{
@@ -507,5 +775,112 @@ namespace UnbeatableTicTacToeEngine
 			}
 			return -1;
 		}
+
+		private void RunMediumBot()
+		{
+			if (playBot)
+			{
+				playBot = false;
+				int getposition = -1;
+				//two type of values in iData if it is -1 then it means X and if it is 1 then it means O 
+				//string whoseTurn;
+				//if (playerOneTurn)
+				//{
+				//	whoseTurn = "X";
+				//}
+				//else
+				//{
+				//	whoseTurn = "O";
+				//}
+
+				//int lm = lastMove;
+				if (lastMove == -1)
+				{
+					getposition = RandomPosition();
+				}
+				else
+				{
+					CheckWinAndDontLose("X"); //Check dont lose
+					CheckWinAndDontLose("O"); //Check win
+					if (iData[lastMove].Text != "")
+					{
+						getposition = RandomPosition();
+					}
+				}
+				if (getposition == -1)
+				{
+					Button button = iData[lastMove];
+					Button_Click(button, null);
+					playerOneTurn = true;
+				}
+				else
+				{
+					Button button = iData[getposition];
+					Button_Click(button, null);
+					playerOneTurn = true;
+				}
+			}
+		}
+
+		private void StoreMove(Button button)
+		{
+			string str = button.Name.Trim('B', 'u', 't', 'o', 'n');
+			int name = Convert.ToInt32(str);
+			switch (name)
+			{
+				case 1:
+					lastMove = 0;
+					break;
+				case 2:
+					lastMove = 1;
+					break;
+				case 3:
+					lastMove = 2;
+					break;
+				case 4:
+					lastMove = 3;
+					break;
+				case 5:
+					lastMove = 4;
+					break;
+				case 6:
+					lastMove = 5;
+					break;
+				case 7:
+					lastMove = 6;
+					break;
+				case 8:
+					lastMove = 7;
+					break;
+				case 9:
+					lastMove = 8;
+					break;
+			}
+
+		}
+
+		void CheckWinAndDontLose(string turn)
+		{
+			if (iData[0].Text == "" && ((iData[1].Text == turn && iData[2].Text == turn) || (iData[3].Text == turn && iData[6].Text == turn) || (iData[4].Text == turn && iData[8].Text == turn)))
+				lastMove = 0;
+			else if (iData[1].Text == "" && ((iData[0].Text == turn && iData[2].Text == turn) || (iData[4].Text == turn && iData[7].Text == turn)))
+				lastMove = 1;
+			else if (iData[2].Text == "" && ((iData[0].Text == turn && iData[1].Text == turn) || (iData[5].Text == turn && iData[8].Text == turn) || (iData[4].Text == turn && iData[6].Text == turn)))
+				lastMove = 2;
+			else if (iData[3].Text == "" && ((iData[0].Text == turn && iData[6].Text == turn) || (iData[4].Text == turn && iData[5].Text == turn)))
+				lastMove = 3;
+			else if (iData[4].Text == ""  && ((iData[0].Text == turn && iData[8].Text == turn) || (iData[2].Text == turn && iData[6].Text == turn) || (iData[1].Text == turn && iData[7].Text == turn) || (iData[3].Text == turn && iData[5].Text == turn)))
+				lastMove = 4;
+			else if (iData[5].Text == "" && ((iData[2].Text == turn && iData[8].Text == turn) || (iData[3].Text == turn && iData[4].Text == turn)))
+				lastMove = 5;
+			else if (iData[6].Text == "" && ((iData[0].Text == turn && iData[3].Text == turn) || (iData[7].Text == turn && iData[8].Text == turn) || (iData[2].Text == turn && iData[4].Text == turn)))
+				lastMove = 6;
+			else if (iData[7].Text == "" && ((iData[1].Text == turn && iData[4].Text == turn) || (iData[6].Text == turn && iData[8].Text == turn)))
+				lastMove = 7;
+			else if (iData[8].Text == "" && ((iData[2].Text == turn && iData[5].Text == turn) || (iData[6].Text == turn && iData[7].Text == turn) || (iData[0].Text == turn && iData[4].Text == turn)))
+				lastMove = 8;
+		}
+
+
 	}
 }
