@@ -58,6 +58,9 @@
 			this.PlayerTwoStartRadioButton = new System.Windows.Forms.RadioButton();
 			this.PlayerOneStartRadioButton = new System.Windows.Forms.RadioButton();
 			this.ButtonsPanel = new System.Windows.Forms.Panel();
+			this.WinsLabelForPlayerTwo = new System.Windows.Forms.Label();
+			this.WinsLabelForPlayerOne = new System.Windows.Forms.Label();
+			this.WinsLabelForDraw = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.PlayersNameGroupBox.SuspendLayout();
 			this.PlayerXGroupBox.SuspendLayout();
@@ -104,14 +107,14 @@
 			// startGameToolStripMenuItem
 			// 
 			this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
-			this.startGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.startGameToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 			this.startGameToolStripMenuItem.Text = "Start Game";
 			this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
 			// 
 			// resetGameToolStripMenuItem
 			// 
 			this.resetGameToolStripMenuItem.Name = "resetGameToolStripMenuItem";
-			this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 			this.resetGameToolStripMenuItem.Text = "Reset Game";
 			this.resetGameToolStripMenuItem.Click += new System.EventHandler(this.resetGameToolStripMenuItem_Click);
 			// 
@@ -224,7 +227,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.Blue;
-			this.label1.Location = new System.Drawing.Point(405, 319);
+			this.label1.Location = new System.Drawing.Point(413, 0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(262, 26);
 			this.label1.TabIndex = 10;
@@ -251,6 +254,7 @@
 			this.PlayerTwoName.Size = new System.Drawing.Size(187, 24);
 			this.PlayerTwoName.TabIndex = 15;
 			this.PlayerTwoName.Text = "Player Two";
+			this.PlayerTwoName.TextChanged += new System.EventHandler(this.PlayerTwoName_TextChanged);
 			// 
 			// PlayerOneName
 			// 
@@ -260,6 +264,7 @@
 			this.PlayerOneName.Size = new System.Drawing.Size(187, 24);
 			this.PlayerOneName.TabIndex = 14;
 			this.PlayerOneName.Text = "Player One";
+			this.PlayerOneName.TextChanged += new System.EventHandler(this.PlayerOneName_TextChanged);
 			// 
 			// label3
 			// 
@@ -369,11 +374,47 @@
 			this.ButtonsPanel.Size = new System.Drawing.Size(301, 269);
 			this.ButtonsPanel.TabIndex = 18;
 			// 
+			// WinsLabelForPlayerTwo
+			// 
+			this.WinsLabelForPlayerTwo.AutoSize = true;
+			this.WinsLabelForPlayerTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.WinsLabelForPlayerTwo.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.WinsLabelForPlayerTwo.Location = new System.Drawing.Point(209, 322);
+			this.WinsLabelForPlayerTwo.Name = "WinsLabelForPlayerTwo";
+			this.WinsLabelForPlayerTwo.Size = new System.Drawing.Size(124, 20);
+			this.WinsLabelForPlayerTwo.TabIndex = 20;
+			this.WinsLabelForPlayerTwo.Text = "PlayerTwo Wins:";
+			// 
+			// WinsLabelForPlayerOne
+			// 
+			this.WinsLabelForPlayerOne.AutoSize = true;
+			this.WinsLabelForPlayerOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.WinsLabelForPlayerOne.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.WinsLabelForPlayerOne.Location = new System.Drawing.Point(20, 322);
+			this.WinsLabelForPlayerOne.Name = "WinsLabelForPlayerOne";
+			this.WinsLabelForPlayerOne.Size = new System.Drawing.Size(125, 20);
+			this.WinsLabelForPlayerOne.TabIndex = 19;
+			this.WinsLabelForPlayerOne.Text = "PlayerOne Wins:";
+			// 
+			// WinsLabelForDraw
+			// 
+			this.WinsLabelForDraw.AutoSize = true;
+			this.WinsLabelForDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.WinsLabelForDraw.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.WinsLabelForDraw.Location = new System.Drawing.Point(414, 322);
+			this.WinsLabelForDraw.Name = "WinsLabelForDraw";
+			this.WinsLabelForDraw.Size = new System.Drawing.Size(54, 20);
+			this.WinsLabelForDraw.TabIndex = 21;
+			this.WinsLabelForDraw.Text = "Draw: ";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(675, 354);
+			this.ClientSize = new System.Drawing.Size(675, 361);
+			this.Controls.Add(this.WinsLabelForDraw);
+			this.Controls.Add(this.WinsLabelForPlayerTwo);
+			this.Controls.Add(this.WinsLabelForPlayerOne);
 			this.Controls.Add(this.ButtonsPanel);
 			this.Controls.Add(this.StartPlayerGroupBox);
 			this.Controls.Add(this.PlayerXGroupBox);
@@ -433,6 +474,9 @@
 		private System.Windows.Forms.RadioButton PlayerTwoStartRadioButton;
 		private System.Windows.Forms.RadioButton PlayerOneStartRadioButton;
 		private System.Windows.Forms.Panel ButtonsPanel;
+		private System.Windows.Forms.Label WinsLabelForPlayerTwo;
+		private System.Windows.Forms.Label WinsLabelForPlayerOne;
+		private System.Windows.Forms.Label WinsLabelForDraw;
 	}
 }
 
