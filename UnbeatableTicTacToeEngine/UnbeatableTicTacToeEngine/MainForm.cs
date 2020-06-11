@@ -25,12 +25,25 @@ namespace UnbeatableTicTacToeEngine
 
 		private void startGameToolStripMenuItem_Click(object sender, EventArgs e)
 		{
+			ButtonsEnableDisable(false);
+			ButtonsPanel.Enabled = true;
+			playerOneTurn = PlayerOneXRadioButton.Checked ? true : false;
+		}
 
+		private void ButtonsEnableDisable(bool Bool)
+		{
+			PlayersNameGroupBox.Enabled = Bool;
+			PlayerXGroupBox.Enabled = Bool;
+			StartPlayerGroupBox.Enabled = Bool;
+			startGameToolStripMenuItem.Enabled = Bool;
+			
 		}
 
 		private void resetGameToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-
+			ButtonsEnableDisable(true);
+			//ButtonsPanel.Enabled = true;
+			ButtonsPanel.Enabled = false;
 		}
 	}
 }
