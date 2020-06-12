@@ -34,6 +34,7 @@
 			this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resetGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.PlayWithFriendItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.playWithBotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.easyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,6 +64,8 @@
 			this.WinsLabelForPlayerTwo = new System.Windows.Forms.Label();
 			this.WinsLabelForPlayerOne = new System.Windows.Forms.Label();
 			this.WinsLabelForDraw = new System.Windows.Forms.Label();
+			this.TurnLabel = new System.Windows.Forms.Label();
+			this.label1 = new System.Windows.Forms.Label();
 			this.menuStrip1.SuspendLayout();
 			this.PlayersNameGroupBox.SuspendLayout();
 			this.PlayerXGroupBox.SuspendLayout();
@@ -75,6 +78,7 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.gameToolStripMenuItem,
+            this.PlayWithFriendItem,
             this.playWithBotToolStripMenuItem,
             this.aboutToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
@@ -110,16 +114,23 @@
 			// startGameToolStripMenuItem
 			// 
 			this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
-			this.startGameToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+			this.startGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.startGameToolStripMenuItem.Text = "Start Game";
 			this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
 			// 
 			// resetGameToolStripMenuItem
 			// 
 			this.resetGameToolStripMenuItem.Name = "resetGameToolStripMenuItem";
-			this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
+			this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.resetGameToolStripMenuItem.Text = "Reset Game";
 			this.resetGameToolStripMenuItem.Click += new System.EventHandler(this.resetGameToolStripMenuItem_Click);
+			// 
+			// PlayWithFriendItem
+			// 
+			this.PlayWithFriendItem.Name = "PlayWithFriendItem";
+			this.PlayWithFriendItem.Size = new System.Drawing.Size(112, 20);
+			this.PlayWithFriendItem.Text = "Play with a Friend";
+			this.PlayWithFriendItem.Click += new System.EventHandler(this.PlayWithFriendItem_Click);
 			// 
 			// playWithBotToolStripMenuItem
 			// 
@@ -134,21 +145,21 @@
 			// easyToolStripMenuItem
 			// 
 			this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-			this.easyToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.easyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.easyToolStripMenuItem.Text = "Easy";
 			this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
 			// 
 			// mediumToolStripMenuItem
 			// 
 			this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-			this.mediumToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.mediumToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.mediumToolStripMenuItem.Text = "Medium";
 			this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
 			// 
 			// impossibleToolStripMenuItem
 			// 
 			this.impossibleToolStripMenuItem.Name = "impossibleToolStripMenuItem";
-			this.impossibleToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.impossibleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.impossibleToolStripMenuItem.Text = "Impossible";
 			this.impossibleToolStripMenuItem.Click += new System.EventHandler(this.impossibleToolStripMenuItem_Click);
 			// 
@@ -282,7 +293,7 @@
 			this.PlayersNameGroupBox.Controls.Add(this.PlayerOneName);
 			this.PlayersNameGroupBox.Controls.Add(this.label3);
 			this.PlayersNameGroupBox.Controls.Add(this.label2);
-			this.PlayersNameGroupBox.Location = new System.Drawing.Point(330, 46);
+			this.PlayersNameGroupBox.Location = new System.Drawing.Point(330, 65);
 			this.PlayersNameGroupBox.Name = "PlayersNameGroupBox";
 			this.PlayersNameGroupBox.Size = new System.Drawing.Size(337, 83);
 			this.PlayersNameGroupBox.TabIndex = 11;
@@ -337,7 +348,7 @@
 			// 
 			this.PlayerXGroupBox.Controls.Add(this.PlayerTwoXRadioButton);
 			this.PlayerXGroupBox.Controls.Add(this.PlayerOneXRadioButton);
-			this.PlayerXGroupBox.Location = new System.Drawing.Point(330, 135);
+			this.PlayerXGroupBox.Location = new System.Drawing.Point(330, 154);
 			this.PlayerXGroupBox.Name = "PlayerXGroupBox";
 			this.PlayerXGroupBox.Size = new System.Drawing.Size(337, 71);
 			this.PlayerXGroupBox.TabIndex = 16;
@@ -354,6 +365,7 @@
 			this.PlayerTwoXRadioButton.TabIndex = 15;
 			this.PlayerTwoXRadioButton.Text = "Player Two ";
 			this.PlayerTwoXRadioButton.UseVisualStyleBackColor = true;
+			this.PlayerTwoXRadioButton.CheckedChanged += new System.EventHandler(this.PlayerTwoXRadioButton_CheckedChanged);
 			// 
 			// PlayerOneXRadioButton
 			// 
@@ -367,12 +379,13 @@
 			this.PlayerOneXRadioButton.TabStop = true;
 			this.PlayerOneXRadioButton.Text = "Player One ";
 			this.PlayerOneXRadioButton.UseVisualStyleBackColor = true;
+			this.PlayerOneXRadioButton.CheckedChanged += new System.EventHandler(this.PlayerOneXRadioButton_CheckedChanged);
 			// 
 			// StartPlayerGroupBox
 			// 
 			this.StartPlayerGroupBox.Controls.Add(this.PlayerTwoStartRadioButton);
 			this.StartPlayerGroupBox.Controls.Add(this.PlayerOneStartRadioButton);
-			this.StartPlayerGroupBox.Location = new System.Drawing.Point(330, 212);
+			this.StartPlayerGroupBox.Location = new System.Drawing.Point(330, 231);
 			this.StartPlayerGroupBox.Name = "StartPlayerGroupBox";
 			this.StartPlayerGroupBox.Size = new System.Drawing.Size(337, 71);
 			this.StartPlayerGroupBox.TabIndex = 17;
@@ -389,6 +402,7 @@
 			this.PlayerTwoStartRadioButton.TabIndex = 15;
 			this.PlayerTwoStartRadioButton.Text = "Player Two ";
 			this.PlayerTwoStartRadioButton.UseVisualStyleBackColor = true;
+			this.PlayerTwoStartRadioButton.CheckedChanged += new System.EventHandler(this.PlayerTwoStartRadioButton_CheckedChanged);
 			// 
 			// PlayerOneStartRadioButton
 			// 
@@ -402,6 +416,7 @@
 			this.PlayerOneStartRadioButton.TabStop = true;
 			this.PlayerOneStartRadioButton.Text = "Player One ";
 			this.PlayerOneStartRadioButton.UseVisualStyleBackColor = true;
+			this.PlayerOneStartRadioButton.CheckedChanged += new System.EventHandler(this.PlayerOneStartRadioButton_CheckedChanged);
 			// 
 			// ButtonsPanel
 			// 
@@ -414,9 +429,9 @@
 			this.ButtonsPanel.Controls.Add(this.Button5);
 			this.ButtonsPanel.Controls.Add(this.Button9);
 			this.ButtonsPanel.Controls.Add(this.Button7);
-			this.ButtonsPanel.Location = new System.Drawing.Point(12, 40);
+			this.ButtonsPanel.Location = new System.Drawing.Point(23, 65);
 			this.ButtonsPanel.Name = "ButtonsPanel";
-			this.ButtonsPanel.Size = new System.Drawing.Size(301, 269);
+			this.ButtonsPanel.Size = new System.Drawing.Size(301, 264);
 			this.ButtonsPanel.TabIndex = 18;
 			// 
 			// WinsLabelForPlayerTwo
@@ -424,7 +439,7 @@
 			this.WinsLabelForPlayerTwo.AutoSize = true;
 			this.WinsLabelForPlayerTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.WinsLabelForPlayerTwo.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.WinsLabelForPlayerTwo.Location = new System.Drawing.Point(258, 326);
+			this.WinsLabelForPlayerTwo.Location = new System.Drawing.Point(259, 341);
 			this.WinsLabelForPlayerTwo.Name = "WinsLabelForPlayerTwo";
 			this.WinsLabelForPlayerTwo.Size = new System.Drawing.Size(124, 20);
 			this.WinsLabelForPlayerTwo.TabIndex = 20;
@@ -435,7 +450,7 @@
 			this.WinsLabelForPlayerOne.AutoSize = true;
 			this.WinsLabelForPlayerOne.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.WinsLabelForPlayerOne.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.WinsLabelForPlayerOne.Location = new System.Drawing.Point(20, 322);
+			this.WinsLabelForPlayerOne.Location = new System.Drawing.Point(20, 341);
 			this.WinsLabelForPlayerOne.Name = "WinsLabelForPlayerOne";
 			this.WinsLabelForPlayerOne.Size = new System.Drawing.Size(125, 20);
 			this.WinsLabelForPlayerOne.TabIndex = 19;
@@ -446,17 +461,41 @@
 			this.WinsLabelForDraw.AutoSize = true;
 			this.WinsLabelForDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.WinsLabelForDraw.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.WinsLabelForDraw.Location = new System.Drawing.Point(525, 326);
+			this.WinsLabelForDraw.Location = new System.Drawing.Point(525, 341);
 			this.WinsLabelForDraw.Name = "WinsLabelForDraw";
 			this.WinsLabelForDraw.Size = new System.Drawing.Size(54, 20);
 			this.WinsLabelForDraw.TabIndex = 21;
 			this.WinsLabelForDraw.Text = "Draw: ";
 			// 
+			// TurnLabel
+			// 
+			this.TurnLabel.AutoSize = true;
+			this.TurnLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.TurnLabel.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.TurnLabel.Location = new System.Drawing.Point(86, 32);
+			this.TurnLabel.Name = "TurnLabel";
+			this.TurnLabel.Size = new System.Drawing.Size(41, 20);
+			this.TurnLabel.TabIndex = 22;
+			this.TurnLabel.Text = "Turn";
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.SystemColors.ControlText;
+			this.label1.Location = new System.Drawing.Point(31, 32);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(49, 20);
+			this.label1.TabIndex = 23;
+			this.label1.Text = "Turn: ";
+			// 
 			// MainForm
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-			this.ClientSize = new System.Drawing.Size(675, 355);
+			this.ClientSize = new System.Drawing.Size(675, 370);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.TurnLabel);
 			this.Controls.Add(this.WinsLabelForDraw);
 			this.Controls.Add(this.WinsLabelForPlayerTwo);
 			this.Controls.Add(this.WinsLabelForPlayerOne);
@@ -523,6 +562,9 @@
 		private System.Windows.Forms.ToolStripMenuItem mediumToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem impossibleToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
+		private System.Windows.Forms.Label TurnLabel;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ToolStripMenuItem PlayWithFriendItem;
 	}
 }
 

@@ -19,27 +19,28 @@ namespace UnbeatableTicTacToeEngine
 		private int winsCounterforPlayerTwo = 0;
 		private int drawCounter = 0;
 		private int botType;
-		private int botClicksCount = 0;		
-		private List<Button> iData;
+		private List<Button> buttonsList;
 		private bool playBot = false;
 		private bool gameEnd = false;
 		private int lastMove = -1;
-		
+		private bool IsFriendPlaying = false;
+
 		public MainForm()
 		{
 			InitializeComponent();
 			ButtonsPanel.Enabled = false;
-			iData = new List<Button>();
-			iData.Add(Button1);
-			iData.Add(Button2);
-			iData.Add(Button3);
-			iData.Add(Button4);
-			iData.Add(Button5);
-			iData.Add(Button6);
-			iData.Add(Button7);
-			iData.Add(Button8);
-			iData.Add(Button9);
+			buttonsList = new List<Button>();
+			buttonsList.Add(Button1);
+			buttonsList.Add(Button2);
+			buttonsList.Add(Button3);
+			buttonsList.Add(Button4);
+			buttonsList.Add(Button5);
+			buttonsList.Add(Button6);
+			buttonsList.Add(Button7);
+			buttonsList.Add(Button8);
+			buttonsList.Add(Button9);
 
+			TurnLabel.Text = "";
 		}
 
 		public enum BotType
@@ -58,7 +59,14 @@ namespace UnbeatableTicTacToeEngine
 			ButtonsEnableDisable(false);
 			ButtonsPanel.Enabled = true;
 			playerOneTurn = PlayerOneStartRadioButton.Checked ? true : false;
+			//TurnLabel.Text = playerOneTurn ? PlayerOneXRadioButton.Checked ? PlayerOneName.Text + " Turn" : PlayerTwoName.Text + " Turn" : PlayerTwoName.Text + " Turn";
+			//TurnLabel.ForeColor = playerOneTurn ? PlayerOneXRadioButton.Checked ? Color.Red : Color.Blue : Color.Blue;
+			TurnLabel.Text = PlayerOneStartRadioButton.Checked ? PlayerOneName.Text + " Turn" : PlayerTwoName.Text + " Turn";
+			TurnLabel.ForeColor = PlayerOneXRadioButton.Checked ? Color.Red : Color.Blue;
 			buttonClicksCounter = 0;
+			mediumToolStripMenuItem.Enabled = false;
+			impossibleToolStripMenuItem.Enabled = false;
+			easyToolStripMenuItem.Enabled = false;
 		}
 
 		private void ButtonsEnableDisable(bool Bool)
@@ -67,7 +75,6 @@ namespace UnbeatableTicTacToeEngine
 			PlayerXGroupBox.Enabled = Bool;
 			StartPlayerGroupBox.Enabled = Bool;
 			startGameToolStripMenuItem.Enabled = Bool;
-
 		}
 
 		private void resetGameToolStripMenuItem_Click(object sender, EventArgs e)
@@ -75,7 +82,7 @@ namespace UnbeatableTicTacToeEngine
 			ButtonsEnableDisable(true);
 			ButtonsPanel.Enabled = false;
 			ClearButtonsText("");
-			playerOneTurn = true;
+			playerOneTurn = PlayerOneStartRadioButton.Checked ? true : PlayerOneXRadioButton.Checked ? true : false;
 			winsCounterforPlayerTwo = 0;
 			winsCounterforPlayerOne = 0;
 			drawCounter = 0;
@@ -89,6 +96,10 @@ namespace UnbeatableTicTacToeEngine
 			impossibleToolStripMenuItem.Enabled = true;
 			easyToolStripMenuItem.Enabled = true;
 			PlayerTwoName.Enabled = true;
+			playBot = false;
+			TurnLabel.Text = "";
+			TurnLabel.ForeColor = playerOneTurn ? PlayerOneXRadioButton.Checked ? Color.Blue : Color.Red : Color.Red;
+			IsFriendPlaying = true;
 		}
 
 		private void ClearButtonsText(string text)
@@ -127,6 +138,10 @@ namespace UnbeatableTicTacToeEngine
 
 			ButtonsPanel.Enabled = true;
 			gameEnd = false;
+
+			TurnLabel.Text =  playBot ? PlayerOneName.Text + " Turn" : playerOneTurn ? PlayerOneXRadioButton.Checked ? PlayerOneName.Text + " Turn" : PlayerTwoName.Text + " Turn" : PlayerTwoName.Text + " Turn";
+			//TurnLabel.ForeColor = !playerOneTurn ? PlayerOneXRadioButton.Checked ? Color.Blue : Color.Red : Color.Red;
+			TurnLabel.ForeColor = PlayerTwoXRadioButton.Checked ? Color.Blue : Color.Red;
 		}
 
 		private void Button_Click(object sender, EventArgs e)
@@ -148,13 +163,22 @@ namespace UnbeatableTicTacToeEngine
 				button.Text = PlayerOneXRadioButton.Checked ? "X" : "O";
 				button.Enabled = false;
 				playerOneTurn = false;
-				playBot = true;
+				if (!IsFriendPlaying)
+				{
+					playBot = true;
+				}
+				TurnLabel.Text = PlayerTwoName.Text + " Turn";
+				//TurnLabel.ForeColor = !playerOneTurn ? PlayerOneXRadioButton.Checked ? Color.Blue : Color.Red : Color.Red;
+				TurnLabel.ForeColor = PlayerOneXRadioButton.Checked ? Color.Blue : Color.Red;
 			}
 			else
 			{
 				button.Text = PlayerTwoXRadioButton.Checked ? "X" : "O";
 				button.Enabled = false;
 				playerOneTurn = true;
+				TurnLabel.Text = PlayerOneName.Text + " Turn";
+				//TurnLabel.ForeColor = !playerOneTurn ? PlayerOneXRadioButton.Checked ? Color.Red : Color.Blue : Color.Red;
+				TurnLabel.ForeColor = PlayerTwoXRadioButton.Checked ? Color.Blue : Color.Red;
 			}
 
 			buttonClicksCounter++;
@@ -218,6 +242,7 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
+								WaitSecondsBeforeTurn(0.33);
 								RunEasyBot();
 							}
 						}
@@ -270,7 +295,6 @@ namespace UnbeatableTicTacToeEngine
 					{
 						//implementation for Medium Bot
 						#region MediumBot
-						//implementation for Medium Bot
 						if (playBot)
 						{
 							if ((Button1.Text == Button2.Text) && (Button2.Text == Button3.Text) && (!Button1.Enabled))
@@ -315,6 +339,7 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
+								WaitSecondsBeforeTurn(0.33);
 								RunMediumBot();
 							}
 						}
@@ -411,6 +436,7 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
+								WaitSecondsBeforeTurn(0.33);
 								RunImpossibleBot();
 							}
 						}
@@ -561,6 +587,7 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
+								WaitSecondsBeforeTurn(0.33);
 								RunEasyBot();
 							}
 						}
@@ -657,6 +684,7 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
+								WaitSecondsBeforeTurn(0.33);
 								RunMediumBot();
 							}
 						}
@@ -752,6 +780,7 @@ namespace UnbeatableTicTacToeEngine
 							}
 							else
 							{
+								WaitSecondsBeforeTurn(0.33);
 								RunImpossibleBot();
 							}
 						}
@@ -856,26 +885,48 @@ namespace UnbeatableTicTacToeEngine
 			ClearButtonsTextAndEnable("");
 			WinsLabelForDraw.Text = "Draw: " + (++drawCounter);
 			buttonClicksCounter = 0;
-			playerOneTurn = true;
+			playerOneTurn = PlayerOneXRadioButton.Checked ? true : false;
 		}
 
 		private void WinnerMessage()
 		{
-			if (playBot && !playerOneTurn)
+			if (IsFriendPlaying)
 			{
-				MessageBox.Show(PlayerOneName.Text + " is the Winner", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				WinsLabelForPlayerOne.Text = PlayerOneName.Text + " Wins: " + (++winsCounterforPlayerOne);
-				buttonClicksCounter = 0;
-				gameEnd = true;
-				playerOneTurn = true;
+				if (!playerOneTurn)
+				{
+					MessageBox.Show(PlayerOneName.Text + " is the Winner", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					WinsLabelForPlayerOne.Text = PlayerOneName.Text + " Wins: " + (++winsCounterforPlayerOne);
+					buttonClicksCounter = 0;
+					gameEnd = true;
+					playerOneTurn = playBot ? true : PlayerOneXRadioButton.Checked ? true : false;
+				}
+				else
+				{
+					MessageBox.Show(PlayerTwoName.Text + " is the Winner", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					WinsLabelForPlayerTwo.Text = PlayerTwoName.Text + " Wins: " + (++winsCounterforPlayerTwo);
+					buttonClicksCounter = 0;
+					gameEnd = true;
+					playerOneTurn = PlayerOneXRadioButton.Checked ? true : false;
+				}
 			}
 			else
 			{
-				MessageBox.Show(PlayerTwoName.Text + " is the Winner", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
-				WinsLabelForPlayerTwo.Text = PlayerTwoName.Text + " Wins: " + (++winsCounterforPlayerTwo);
-				buttonClicksCounter = 0;
-				gameEnd = true;
-				playerOneTurn = true;
+				if (playBot && !playerOneTurn)
+				{
+					MessageBox.Show(PlayerOneName.Text + " is the Winner", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					WinsLabelForPlayerOne.Text = PlayerOneName.Text + " Wins: " + (++winsCounterforPlayerOne);
+					buttonClicksCounter = 0;
+					gameEnd = true;
+					playerOneTurn = playBot ? true : PlayerOneXRadioButton.Checked ? true : false;
+				}
+				else
+				{
+					MessageBox.Show(PlayerTwoName.Text + " is the Winner", "Game over", MessageBoxButtons.OK, MessageBoxIcon.Information);
+					WinsLabelForPlayerTwo.Text = PlayerTwoName.Text + " Wins: " + (++winsCounterforPlayerTwo);
+					buttonClicksCounter = 0;
+					gameEnd = true;
+					playerOneTurn = PlayerOneXRadioButton.Checked ? true : false;
+				}
 			}
 		}
 
@@ -923,6 +974,7 @@ namespace UnbeatableTicTacToeEngine
 			mediumToolStripMenuItem.Enabled = false;
 			impossibleToolStripMenuItem.Enabled = false;
 			buttonClicksCounter = 0;
+			IsFriendPlaying = false;
 		}
 
 		private void mediumToolStripMenuItem_Click(object sender, EventArgs e)
@@ -935,6 +987,7 @@ namespace UnbeatableTicTacToeEngine
 			impossibleToolStripMenuItem.Enabled = false;
 			playBot = true;
 			buttonClicksCounter = 0;
+			IsFriendPlaying = false;
 		}
 
 		private void impossibleToolStripMenuItem_Click(object sender, EventArgs e)
@@ -947,6 +1000,7 @@ namespace UnbeatableTicTacToeEngine
 			easyToolStripMenuItem.Enabled = false;
 			mediumToolStripMenuItem.Enabled = false;
 			buttonClicksCounter = 0;
+			IsFriendPlaying = false;
 		}
 
 		private void RunEasyBot()
@@ -956,7 +1010,7 @@ namespace UnbeatableTicTacToeEngine
 				playBot = false;
 				//botClicksCount++;
 				int getPosition = RandomPosition();
-				Button button = iData[getPosition];
+				Button button = buttonsList[getPosition];
 				Button_Click(button, null);
 				playerOneTurn = true;
 			}
@@ -967,7 +1021,7 @@ namespace UnbeatableTicTacToeEngine
 			int Count = 0;
 			for (int i = 0; i <= 8; i++)
 			{
-				if (iData[i].Text == "")
+				if (buttonsList[i].Text == "")
 				{
 					Count++;
 				}
@@ -978,7 +1032,7 @@ namespace UnbeatableTicTacToeEngine
 			Count = 0;
 			for (int i = 0; i <= 8; i++)
 			{
-				if (iData[i].Text == "")
+				if (buttonsList[i].Text == "")
 				{
 					Count++;
 					if (Count == iRandom)
@@ -996,7 +1050,7 @@ namespace UnbeatableTicTacToeEngine
 			{
 				playBot = false;
 				int getposition = -1;
-				//two type of values in iData if it is -1 then it means X and if it is 1 then it means O 
+				//two type of values in buttonsList if it is -1 then it means X and if it is 1 then it means O 
 				//string whoseTurn;
 				//if (playerOneTurn)
 				//{
@@ -1016,20 +1070,20 @@ namespace UnbeatableTicTacToeEngine
 				{
 					CheckWinAndDontLose("X"); //Check dont lose
 					CheckWinAndDontLose("O"); //Check win
-					if (iData[lastMove].Text != "")
+					if (buttonsList[lastMove].Text != "")
 					{
 						getposition = RandomPosition();
 					}
 				}
 				if (getposition == -1)
 				{
-					Button button = iData[lastMove];
+					Button button = buttonsList[lastMove];
 					Button_Click(button, null);
 					playerOneTurn = true;
 				}
 				else
 				{
-					Button button = iData[getposition];
+					Button button = buttonsList[getposition];
 					Button_Click(button, null);
 					playerOneTurn = true;
 				}
@@ -1075,23 +1129,23 @@ namespace UnbeatableTicTacToeEngine
 
 		void CheckWinAndDontLose(string turn)
 		{
-			if (iData[0].Text == "" && ((iData[1].Text == turn && iData[2].Text == turn) || (iData[3].Text == turn && iData[6].Text == turn) || (iData[4].Text == turn && iData[8].Text == turn)))
+			if (buttonsList[0].Text == "" && ((buttonsList[1].Text == turn && buttonsList[2].Text == turn) || (buttonsList[3].Text == turn && buttonsList[6].Text == turn) || (buttonsList[4].Text == turn && buttonsList[8].Text == turn)))
 				lastMove = 0;
-			else if (iData[1].Text == "" && ((iData[0].Text == turn && iData[2].Text == turn) || (iData[4].Text == turn && iData[7].Text == turn)))
+			else if (buttonsList[1].Text == "" && ((buttonsList[0].Text == turn && buttonsList[2].Text == turn) || (buttonsList[4].Text == turn && buttonsList[7].Text == turn)))
 				lastMove = 1;
-			else if (iData[2].Text == "" && ((iData[0].Text == turn && iData[1].Text == turn) || (iData[5].Text == turn && iData[8].Text == turn) || (iData[4].Text == turn && iData[6].Text == turn)))
+			else if (buttonsList[2].Text == "" && ((buttonsList[0].Text == turn && buttonsList[1].Text == turn) || (buttonsList[5].Text == turn && buttonsList[8].Text == turn) || (buttonsList[4].Text == turn && buttonsList[6].Text == turn)))
 				lastMove = 2;
-			else if (iData[3].Text == "" && ((iData[0].Text == turn && iData[6].Text == turn) || (iData[4].Text == turn && iData[5].Text == turn)))
+			else if (buttonsList[3].Text == "" && ((buttonsList[0].Text == turn && buttonsList[6].Text == turn) || (buttonsList[4].Text == turn && buttonsList[5].Text == turn)))
 				lastMove = 3;
-			else if (iData[4].Text == ""  && ((iData[0].Text == turn && iData[8].Text == turn) || (iData[2].Text == turn && iData[6].Text == turn) || (iData[1].Text == turn && iData[7].Text == turn) || (iData[3].Text == turn && iData[5].Text == turn)))
+			else if (buttonsList[4].Text == ""  && ((buttonsList[0].Text == turn && buttonsList[8].Text == turn) || (buttonsList[2].Text == turn && buttonsList[6].Text == turn) || (buttonsList[1].Text == turn && buttonsList[7].Text == turn) || (buttonsList[3].Text == turn && buttonsList[5].Text == turn)))
 				lastMove = 4;
-			else if (iData[5].Text == "" && ((iData[2].Text == turn && iData[8].Text == turn) || (iData[3].Text == turn && iData[4].Text == turn)))
+			else if (buttonsList[5].Text == "" && ((buttonsList[2].Text == turn && buttonsList[8].Text == turn) || (buttonsList[3].Text == turn && buttonsList[4].Text == turn)))
 				lastMove = 5;
-			else if (iData[6].Text == "" && ((iData[0].Text == turn && iData[3].Text == turn) || (iData[7].Text == turn && iData[8].Text == turn) || (iData[2].Text == turn && iData[4].Text == turn)))
+			else if (buttonsList[6].Text == "" && ((buttonsList[0].Text == turn && buttonsList[3].Text == turn) || (buttonsList[7].Text == turn && buttonsList[8].Text == turn) || (buttonsList[2].Text == turn && buttonsList[4].Text == turn)))
 				lastMove = 6;
-			else if (iData[7].Text == "" && ((iData[1].Text == turn && iData[4].Text == turn) || (iData[6].Text == turn && iData[8].Text == turn)))
+			else if (buttonsList[7].Text == "" && ((buttonsList[1].Text == turn && buttonsList[4].Text == turn) || (buttonsList[6].Text == turn && buttonsList[8].Text == turn)))
 				lastMove = 7;
-			else if (iData[8].Text == "" && ((iData[2].Text == turn && iData[5].Text == turn) || (iData[6].Text == turn && iData[7].Text == turn) || (iData[0].Text == turn && iData[4].Text == turn)))
+			else if (buttonsList[8].Text == "" && ((buttonsList[2].Text == turn && buttonsList[5].Text == turn) || (buttonsList[6].Text == turn && buttonsList[7].Text == turn) || (buttonsList[0].Text == turn && buttonsList[4].Text == turn)))
 				lastMove = 8;
 		}
 
@@ -1106,34 +1160,34 @@ namespace UnbeatableTicTacToeEngine
 			if (lastMove == -1)
 			{
 				//Paste on center
-				if (iData[4].Text == "")
+				if (buttonsList[4].Text == "")
 				{
 					lastMove= 4;
 				}
 			}
-			else if (iData[lastMove].Text != "")
+			else if (buttonsList[lastMove].Text != "")
 			{
 				MyCheckWinAndDontLose(iOpponent); //Check dont lose
 				MyCheckWinAndDontLose(iTurn); //Check win
-				if (iData[lastMove].Text != "")
+				if (buttonsList[lastMove].Text != "")
 				{
 					//lastMove is center
 					if (lastMove == 4)
 					{
 						//Paste on corner
-						if (iData[0].Text == "")
+						if (buttonsList[0].Text == "")
 						{
 							lastMove = 0;
 						}
-						else if (iData[2].Text == "")
+						else if (buttonsList[2].Text == "")
 						{
 							lastMove = 2;
 						}
-						else if (iData[6].Text == "")
+						else if (buttonsList[6].Text == "")
 						{
 							lastMove = 6;
 						}
-						else if (iData[8].Text == "")
+						else if (buttonsList[8].Text == "")
 						{
 							lastMove = 8;
 						}
@@ -1143,62 +1197,62 @@ namespace UnbeatableTicTacToeEngine
 					else if (lastMove == 0 || lastMove == 2 || lastMove == 6 || lastMove == 8)
 					{
 						//Paste on center
-						if (iData[4].Text == "")
+						if (buttonsList[4].Text == "")
 						{
 							lastMove = 4;
 						}
 						//Paste on opposite corner
-						else if (iData[0].Text == "" && iData[8].Text == iOpponent)
+						else if (buttonsList[0].Text == "" && buttonsList[8].Text == iOpponent)
 						{
 							lastMove = 0;
 						}
-						else if (iData[2].Text == "" && iData[6].Text == iOpponent)
+						else if (buttonsList[2].Text == "" && buttonsList[6].Text == iOpponent)
 						{
 							lastMove = 2;
 						}
-						else if (iData[6].Text == ""  && iData[2].Text == iOpponent)
+						else if (buttonsList[6].Text == ""  && buttonsList[2].Text == iOpponent)
 						{
 							lastMove = 6;
 						}
-						else if (iData[8].Text == "" && iData[0].Text == iOpponent)
+						else if (buttonsList[8].Text == "" && buttonsList[0].Text == iOpponent)
 						{
 							lastMove = 8;
 						}
 						//If opposite corners are opponent
-						else if ((iData[0].Text == iOpponent && iData[8].Text == iOpponent) || (iData[2].Text == iOpponent && iData[6].Text == iOpponent))
+						else if ((buttonsList[0].Text == iOpponent && buttonsList[8].Text == iOpponent) || (buttonsList[2].Text == iOpponent && buttonsList[6].Text == iOpponent))
 						{
 							//Paste on Edge
-							if (iData[1].Text == "")
+							if (buttonsList[1].Text == "")
 							{
 								lastMove = 1;
 							}
-							else if (iData[3].Text == "")
+							else if (buttonsList[3].Text == "")
 							{
 								lastMove = 3;
 							}
-							else if (iData[5].Text == "")
+							else if (buttonsList[5].Text == "")
 							{
 								lastMove = 5;
 							}
-							else if (iData[7].Text == "")
+							else if (buttonsList[7].Text == "")
 							{
 								lastMove = 7;
 							}
 						}
 						//Paste on corner
-						else if (iData[0].Text == "")
+						else if (buttonsList[0].Text == "")
 						{
 							lastMove = 0;
 						}
-						else if (iData[2].Text == "")
+						else if (buttonsList[2].Text == "")
 						{
 							lastMove = 2;
 						}
-						else if (iData[6].Text == "")
+						else if (buttonsList[6].Text == "")
 						{
 							lastMove = 6;
 						}
-						else if (iData[8].Text == "")
+						else if (buttonsList[8].Text == "")
 						{
 							lastMove = 8;
 						}
@@ -1208,75 +1262,75 @@ namespace UnbeatableTicTacToeEngine
 					else if (lastMove == 1 || lastMove == 3 || lastMove == 5 || lastMove == 7)
 					{
 						//Paste on center
-						if (iData[4].Text == "")
+						if (buttonsList[4].Text == "")
 						{
 							lastMove = 4;
 						}
 						//Paste on corner when edges are opponent
-						else if (iData[0].Text == "" && iData[1].Text == iOpponent && iData[3].Text == iOpponent)
+						else if (buttonsList[0].Text == "" && buttonsList[1].Text == iOpponent && buttonsList[3].Text == iOpponent)
 						{
 							lastMove = 0;
 						}
-						else if (iData[2].Text == "" && iData[1].Text == iOpponent && iData[5].Text == iOpponent)
+						else if (buttonsList[2].Text == "" && buttonsList[1].Text == iOpponent && buttonsList[5].Text == iOpponent)
 						{
 							lastMove = 2;
 						}
-						else if (iData[6].Text == "" && iData[3].Text == iOpponent && iData[7].Text == iOpponent)
+						else if (buttonsList[6].Text == "" && buttonsList[3].Text == iOpponent && buttonsList[7].Text == iOpponent)
 						{
 							lastMove = 6;
 						}
-						else if (iData[8].Text == "" && iData[5].Text == iOpponent && iData[7].Text == iOpponent)
+						else if (buttonsList[8].Text == "" && buttonsList[5].Text == iOpponent && buttonsList[7].Text == iOpponent)
 						{
 							lastMove = 8;
 						}
 						//Paste the corner near the edge
-						else if (iData[0].Text == "" && ((iData[1].Text == iOpponent) || (iData[3].Text == iOpponent)))
+						else if (buttonsList[0].Text == "" && ((buttonsList[1].Text == iOpponent) || (buttonsList[3].Text == iOpponent)))
 						{
 							lastMove = 0;
 						}
-						else if (iData[2].Text == "" && ((iData[1].Text == iOpponent) || (iData[5].Text == iOpponent)))
+						else if (buttonsList[2].Text == "" && ((buttonsList[1].Text == iOpponent) || (buttonsList[5].Text == iOpponent)))
 						{
 							lastMove = 2;
 						}
-						else if (iData[6].Text == "" && ((iData[3].Text == iOpponent) || (iData[7].Text == iOpponent)))
+						else if (buttonsList[6].Text == "" && ((buttonsList[3].Text == iOpponent) || (buttonsList[7].Text == iOpponent)))
 						{
 							lastMove = 6;
 						}
-						else if (iData[8].Text == "" && ((iData[5].Text == iOpponent) || (iData[7].Text == iOpponent)))
+						else if (buttonsList[8].Text == "" && ((buttonsList[5].Text == iOpponent) || (buttonsList[7].Text == iOpponent)))
 						{
 							lastMove = 8;
 						}
 						//Paste on corner
-						else if (iData[0].Text == "")
+						else if (buttonsList[0].Text == "")
 						{
 							lastMove = 0;
 						}
-						else if (iData[2].Text == "")
+						else if (buttonsList[2].Text == "")
 						{
 							lastMove = 2;
 						}
-						else if (iData[6].Text == "")
+						else if (buttonsList[6].Text == "")
 						{
 							lastMove = 6;
 						}
-						else if (iData[8].Text == "")
+						else if (buttonsList[8].Text == "")
 						{
 							lastMove = 8;
 						}
 						//Paste on Edge
-						else if (iData[1].Text == "")
+						else if (buttonsList[1].Text == "")
 						{
 							lastMove = 1;
 						}
-						else if (iData[3].Text == "")
+						else if (buttonsList[3].Text == "")
 						{
 							lastMove = 3;
 						}
-						else if (iData[5].Text == "")
+						else if (buttonsList[5].Text == "")
 						{
 							lastMove = 5;
 						}
-						else if (iData[7].Text == "")
+						else if (buttonsList[7].Text == "")
 						{
 							lastMove = 7;
 						}
@@ -1287,34 +1341,34 @@ namespace UnbeatableTicTacToeEngine
 			}
 
 			playBot = false;
-			Button button = iData[lastMove];
+			Button button = buttonsList[lastMove];
 			Button_Click(button, null);
 			playerOneTurn = true;
 		}
 
 		void MyCheckWinAndDontLose(string turn)
 		{
-			if (iData[0].Text == "" && ((iData[1].Text == turn && iData[2].Text == turn) || (iData[3].Text == turn && iData[6].Text == turn) || (iData[4].Text == turn && iData[8].Text == turn)))
+			if (buttonsList[0].Text == "" && ((buttonsList[1].Text == turn && buttonsList[2].Text == turn) || (buttonsList[3].Text == turn && buttonsList[6].Text == turn) || (buttonsList[4].Text == turn && buttonsList[8].Text == turn)))
 				lastMove = 0;
-			else if (iData[1].Text == "" && ((iData[0].Text == turn && iData[2].Text == turn) || (iData[4].Text == turn && iData[7].Text == turn)))
+			else if (buttonsList[1].Text == "" && ((buttonsList[0].Text == turn && buttonsList[2].Text == turn) || (buttonsList[4].Text == turn && buttonsList[7].Text == turn)))
 				lastMove = 1;
-			else if (iData[2].Text == "" && ((iData[0].Text == turn && iData[1].Text == turn) || (iData[5].Text == turn && iData[8].Text == turn) || (iData[4].Text == turn && iData[6].Text == turn)))
+			else if (buttonsList[2].Text == "" && ((buttonsList[0].Text == turn && buttonsList[1].Text == turn) || (buttonsList[5].Text == turn && buttonsList[8].Text == turn) || (buttonsList[4].Text == turn && buttonsList[6].Text == turn)))
 				lastMove = 2;
-			else if (iData[3].Text == "" && ((iData[0].Text == turn && iData[6].Text == turn) || (iData[4].Text == turn && iData[5].Text == turn)))
+			else if (buttonsList[3].Text == "" && ((buttonsList[0].Text == turn && buttonsList[6].Text == turn) || (buttonsList[4].Text == turn && buttonsList[5].Text == turn)))
 				lastMove = 3;
-			else if (iData[4].Text == "" && ((iData[0].Text == turn && iData[8].Text == turn) || (iData[2].Text == turn && iData[6].Text == turn) || (iData[1].Text == turn && iData[7].Text == turn) || (iData[3].Text == turn && iData[5].Text == turn)))
+			else if (buttonsList[4].Text == "" && ((buttonsList[0].Text == turn && buttonsList[8].Text == turn) || (buttonsList[2].Text == turn && buttonsList[6].Text == turn) || (buttonsList[1].Text == turn && buttonsList[7].Text == turn) || (buttonsList[3].Text == turn && buttonsList[5].Text == turn)))
 				lastMove = 4;
-			else if (iData[5].Text == "" && ((iData[2].Text == turn && iData[8].Text == turn) || (iData[3].Text == turn && iData[4].Text == turn)))
+			else if (buttonsList[5].Text == "" && ((buttonsList[2].Text == turn && buttonsList[8].Text == turn) || (buttonsList[3].Text == turn && buttonsList[4].Text == turn)))
 				lastMove = 5;
-			else if (iData[6].Text == "" && ((iData[0].Text == turn && iData[3].Text == turn) || (iData[7].Text == turn && iData[8].Text == turn) || (iData[2].Text == turn && iData[4].Text == turn)))
+			else if (buttonsList[6].Text == "" && ((buttonsList[0].Text == turn && buttonsList[3].Text == turn) || (buttonsList[7].Text == turn && buttonsList[8].Text == turn) || (buttonsList[2].Text == turn && buttonsList[4].Text == turn)))
 				lastMove = 6;
-			else if (iData[7].Text == "" && ((iData[1].Text == turn && iData[4].Text == turn) || (iData[6].Text == turn && iData[8].Text == turn)))
+			else if (buttonsList[7].Text == "" && ((buttonsList[1].Text == turn && buttonsList[4].Text == turn) || (buttonsList[6].Text == turn && buttonsList[8].Text == turn)))
 				lastMove = 7;
-			else if (iData[8].Text == "" && ((iData[2].Text == turn && iData[5].Text == turn) || (iData[6].Text == turn && iData[7].Text == turn) || (iData[0].Text == turn && iData[4].Text == turn)))
+			else if (buttonsList[8].Text == "" && ((buttonsList[2].Text == turn && buttonsList[5].Text == turn) || (buttonsList[6].Text == turn && buttonsList[7].Text == turn) || (buttonsList[0].Text == turn && buttonsList[4].Text == turn)))
 				lastMove = 8;
-			else if (iData[7].Text == "" && (iData[6].Text == turn && iData[5].Text == turn && iData[8].Text == turn))
+			else if (buttonsList[7].Text == "" && (buttonsList[6].Text == turn && buttonsList[5].Text == turn && buttonsList[8].Text == turn))
 				lastMove = 7;
-			else if (iData[7].Text == "" && (iData[8].Text == turn && iData[6].Text == turn))
+			else if (buttonsList[7].Text == "" && (buttonsList[8].Text == turn && buttonsList[6].Text == turn))
 				lastMove = 7;
 		}
 
@@ -1341,6 +1395,39 @@ namespace UnbeatableTicTacToeEngine
 		private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			MessageBox.Show("Developed By Tayyab Dost. All rights reserved © 2020", "About Application", MessageBoxButtons.OK, MessageBoxIcon.Information);
+		}
+		private void WaitSecondsBeforeTurn(double seconds)
+		{
+			DateTime _desired = DateTime.Now.AddSeconds(seconds);
+			while (DateTime.Now < _desired)
+			{
+				Application.DoEvents();
+			}
+		}
+
+		private void PlayerTwoXRadioButton_CheckedChanged(object sender, EventArgs e)
+		{
+			playerOneTurn = false;
+		}
+
+		private void PlayerTwoStartRadioButton_CheckedChanged(object sender, EventArgs e)
+		{
+			playerOneTurn = false;
+		}
+
+		private void PlayerOneXRadioButton_CheckedChanged(object sender, EventArgs e)
+		{
+			playerOneTurn = true;
+		}
+
+		private void PlayerOneStartRadioButton_CheckedChanged(object sender, EventArgs e)
+		{
+			playerOneTurn = true;
+		}
+
+		private void PlayWithFriendItem_Click(object sender, EventArgs e)
+		{
+			resetGameToolStripMenuItem_Click(null, null);
 		}
 	}
 }
