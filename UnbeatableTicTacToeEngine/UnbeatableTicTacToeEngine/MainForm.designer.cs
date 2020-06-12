@@ -28,6 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -114,14 +115,14 @@
 			// startGameToolStripMenuItem
 			// 
 			this.startGameToolStripMenuItem.Name = "startGameToolStripMenuItem";
-			this.startGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.startGameToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 			this.startGameToolStripMenuItem.Text = "Start Game";
 			this.startGameToolStripMenuItem.Click += new System.EventHandler(this.startGameToolStripMenuItem_Click);
 			// 
 			// resetGameToolStripMenuItem
 			// 
 			this.resetGameToolStripMenuItem.Name = "resetGameToolStripMenuItem";
-			this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.resetGameToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
 			this.resetGameToolStripMenuItem.Text = "Reset Game";
 			this.resetGameToolStripMenuItem.Click += new System.EventHandler(this.resetGameToolStripMenuItem_Click);
 			// 
@@ -145,21 +146,21 @@
 			// easyToolStripMenuItem
 			// 
 			this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-			this.easyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.easyToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.easyToolStripMenuItem.Text = "Easy";
 			this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
 			// 
 			// mediumToolStripMenuItem
 			// 
 			this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-			this.mediumToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.mediumToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.mediumToolStripMenuItem.Text = "Medium";
 			this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
 			// 
 			// impossibleToolStripMenuItem
 			// 
 			this.impossibleToolStripMenuItem.Name = "impossibleToolStripMenuItem";
-			this.impossibleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.impossibleToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
 			this.impossibleToolStripMenuItem.Text = "Impossible";
 			this.impossibleToolStripMenuItem.Click += new System.EventHandler(this.impossibleToolStripMenuItem_Click);
 			// 
@@ -441,9 +442,9 @@
 			this.WinsLabelForPlayerTwo.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.WinsLabelForPlayerTwo.Location = new System.Drawing.Point(259, 341);
 			this.WinsLabelForPlayerTwo.Name = "WinsLabelForPlayerTwo";
-			this.WinsLabelForPlayerTwo.Size = new System.Drawing.Size(124, 20);
+			this.WinsLabelForPlayerTwo.Size = new System.Drawing.Size(128, 20);
 			this.WinsLabelForPlayerTwo.TabIndex = 20;
-			this.WinsLabelForPlayerTwo.Text = "PlayerTwo Wins:";
+			this.WinsLabelForPlayerTwo.Text = "Player Two Wins:";
 			// 
 			// WinsLabelForPlayerOne
 			// 
@@ -452,9 +453,9 @@
 			this.WinsLabelForPlayerOne.ForeColor = System.Drawing.SystemColors.ControlText;
 			this.WinsLabelForPlayerOne.Location = new System.Drawing.Point(20, 341);
 			this.WinsLabelForPlayerOne.Name = "WinsLabelForPlayerOne";
-			this.WinsLabelForPlayerOne.Size = new System.Drawing.Size(125, 20);
+			this.WinsLabelForPlayerOne.Size = new System.Drawing.Size(129, 20);
 			this.WinsLabelForPlayerOne.TabIndex = 19;
-			this.WinsLabelForPlayerOne.Text = "PlayerOne Wins:";
+			this.WinsLabelForPlayerOne.Text = "Player One Wins:";
 			// 
 			// WinsLabelForDraw
 			// 
@@ -505,6 +506,7 @@
 			this.Controls.Add(this.PlayersNameGroupBox);
 			this.Controls.Add(this.menuStrip1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.MinimizeBox = false;
