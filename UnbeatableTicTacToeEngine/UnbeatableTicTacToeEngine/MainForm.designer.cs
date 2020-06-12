@@ -34,8 +34,11 @@
 			this.gameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.startGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.resetGameToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.aboutTicTacToeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.playWithBotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.easyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.impossibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.Button1 = new System.Windows.Forms.Button();
 			this.Button3 = new System.Windows.Forms.Button();
 			this.Button2 = new System.Windows.Forms.Button();
@@ -45,7 +48,6 @@
 			this.Button8 = new System.Windows.Forms.Button();
 			this.Button9 = new System.Windows.Forms.Button();
 			this.Button7 = new System.Windows.Forms.Button();
-			this.label1 = new System.Windows.Forms.Label();
 			this.PlayersNameGroupBox = new System.Windows.Forms.GroupBox();
 			this.PlayerTwoName = new System.Windows.Forms.TextBox();
 			this.PlayerOneName = new System.Windows.Forms.TextBox();
@@ -61,10 +63,6 @@
 			this.WinsLabelForPlayerTwo = new System.Windows.Forms.Label();
 			this.WinsLabelForPlayerOne = new System.Windows.Forms.Label();
 			this.WinsLabelForDraw = new System.Windows.Forms.Label();
-			this.playWithBotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.easyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.mediumToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.impossibleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1.SuspendLayout();
 			this.PlayersNameGroupBox.SuspendLayout();
 			this.PlayerXGroupBox.SuspendLayout();
@@ -77,8 +75,8 @@
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
             this.gameToolStripMenuItem,
-            this.helpToolStripMenuItem,
-            this.playWithBotToolStripMenuItem});
+            this.playWithBotToolStripMenuItem,
+            this.aboutToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 0);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(675, 24);
@@ -123,120 +121,160 @@
 			this.resetGameToolStripMenuItem.Text = "Reset Game";
 			this.resetGameToolStripMenuItem.Click += new System.EventHandler(this.resetGameToolStripMenuItem_Click);
 			// 
-			// helpToolStripMenuItem
+			// playWithBotToolStripMenuItem
 			// 
-			this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.aboutTicTacToeToolStripMenuItem});
-			this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
-			this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
-			this.helpToolStripMenuItem.Text = "Help";
+			this.playWithBotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.easyToolStripMenuItem,
+            this.mediumToolStripMenuItem,
+            this.impossibleToolStripMenuItem});
+			this.playWithBotToolStripMenuItem.Name = "playWithBotToolStripMenuItem";
+			this.playWithBotToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
+			this.playWithBotToolStripMenuItem.Text = "Play with Bot";
 			// 
-			// aboutTicTacToeToolStripMenuItem
+			// easyToolStripMenuItem
 			// 
-			this.aboutTicTacToeToolStripMenuItem.Name = "aboutTicTacToeToolStripMenuItem";
-			this.aboutTicTacToeToolStripMenuItem.Size = new System.Drawing.Size(166, 22);
-			this.aboutTicTacToeToolStripMenuItem.Text = "About Tic Tac Toe";
+			this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
+			this.easyToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.easyToolStripMenuItem.Text = "Easy";
+			this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
+			// 
+			// mediumToolStripMenuItem
+			// 
+			this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
+			this.mediumToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.mediumToolStripMenuItem.Text = "Medium";
+			this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
+			// 
+			// impossibleToolStripMenuItem
+			// 
+			this.impossibleToolStripMenuItem.Name = "impossibleToolStripMenuItem";
+			this.impossibleToolStripMenuItem.Size = new System.Drawing.Size(131, 22);
+			this.impossibleToolStripMenuItem.Text = "Impossible";
+			this.impossibleToolStripMenuItem.Click += new System.EventHandler(this.impossibleToolStripMenuItem_Click);
+			// 
+			// aboutToolStripMenuItem
+			// 
+			this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+			this.aboutToolStripMenuItem.Size = new System.Drawing.Size(52, 20);
+			this.aboutToolStripMenuItem.Text = "About";
+			this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
 			// 
 			// Button1
 			// 
 			this.Button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button1.ForeColor = System.Drawing.Color.Blue;
 			this.Button1.Location = new System.Drawing.Point(12, 5);
 			this.Button1.Name = "Button1";
 			this.Button1.Size = new System.Drawing.Size(75, 72);
 			this.Button1.TabIndex = 1;
 			this.Button1.UseVisualStyleBackColor = true;
+			this.Button1.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button1.Click += new System.EventHandler(this.Button_Click);
+			this.Button1.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button3
 			// 
 			this.Button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button3.ForeColor = System.Drawing.Color.Blue;
 			this.Button3.Location = new System.Drawing.Point(201, 5);
 			this.Button3.Name = "Button3";
 			this.Button3.Size = new System.Drawing.Size(75, 72);
 			this.Button3.TabIndex = 2;
 			this.Button3.UseVisualStyleBackColor = true;
+			this.Button3.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button3.Click += new System.EventHandler(this.Button_Click);
+			this.Button3.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button2
 			// 
 			this.Button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button2.ForeColor = System.Drawing.Color.Blue;
 			this.Button2.Location = new System.Drawing.Point(104, 5);
 			this.Button2.Name = "Button2";
 			this.Button2.Size = new System.Drawing.Size(75, 72);
 			this.Button2.TabIndex = 3;
 			this.Button2.UseVisualStyleBackColor = true;
+			this.Button2.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button2.Click += new System.EventHandler(this.Button_Click);
+			this.Button2.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button5
 			// 
 			this.Button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button5.ForeColor = System.Drawing.Color.Blue;
 			this.Button5.Location = new System.Drawing.Point(104, 93);
 			this.Button5.Name = "Button5";
 			this.Button5.Size = new System.Drawing.Size(75, 72);
 			this.Button5.TabIndex = 6;
 			this.Button5.UseVisualStyleBackColor = true;
+			this.Button5.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button5.Click += new System.EventHandler(this.Button_Click);
+			this.Button5.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button6
 			// 
 			this.Button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button6.ForeColor = System.Drawing.Color.Blue;
 			this.Button6.Location = new System.Drawing.Point(201, 93);
 			this.Button6.Name = "Button6";
 			this.Button6.Size = new System.Drawing.Size(75, 72);
 			this.Button6.TabIndex = 5;
 			this.Button6.UseVisualStyleBackColor = true;
+			this.Button6.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button6.Click += new System.EventHandler(this.Button_Click);
+			this.Button6.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button4
 			// 
 			this.Button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button4.ForeColor = System.Drawing.Color.Blue;
 			this.Button4.Location = new System.Drawing.Point(12, 93);
 			this.Button4.Name = "Button4";
 			this.Button4.Size = new System.Drawing.Size(75, 72);
 			this.Button4.TabIndex = 4;
 			this.Button4.UseVisualStyleBackColor = true;
+			this.Button4.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button4.Click += new System.EventHandler(this.Button_Click);
+			this.Button4.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button8
 			// 
 			this.Button8.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button8.ForeColor = System.Drawing.Color.Blue;
 			this.Button8.Location = new System.Drawing.Point(104, 184);
 			this.Button8.Name = "Button8";
 			this.Button8.Size = new System.Drawing.Size(75, 72);
 			this.Button8.TabIndex = 9;
 			this.Button8.UseVisualStyleBackColor = true;
+			this.Button8.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button8.Click += new System.EventHandler(this.Button_Click);
+			this.Button8.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button9
 			// 
 			this.Button9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button9.ForeColor = System.Drawing.Color.Blue;
 			this.Button9.Location = new System.Drawing.Point(201, 184);
 			this.Button9.Name = "Button9";
 			this.Button9.Size = new System.Drawing.Size(75, 72);
 			this.Button9.TabIndex = 8;
 			this.Button9.UseVisualStyleBackColor = true;
+			this.Button9.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button9.Click += new System.EventHandler(this.Button_Click);
+			this.Button9.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// Button7
 			// 
 			this.Button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.Button7.ForeColor = System.Drawing.Color.Blue;
 			this.Button7.Location = new System.Drawing.Point(12, 184);
 			this.Button7.Name = "Button7";
 			this.Button7.Size = new System.Drawing.Size(75, 72);
 			this.Button7.TabIndex = 7;
 			this.Button7.UseVisualStyleBackColor = true;
+			this.Button7.EnabledChanged += new System.EventHandler(this.Enabled_Change);
 			this.Button7.Click += new System.EventHandler(this.Button_Click);
-			// 
-			// label1
-			// 
-			this.label1.AutoSize = true;
-			this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.Color.Blue;
-			this.label1.Location = new System.Drawing.Point(413, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(262, 26);
-			this.label1.TabIndex = 10;
-			this.label1.Text = "All rights reserved © 2020";
+			this.Button7.Paint += new System.Windows.Forms.PaintEventHandler(this.Button_Paint);
 			// 
 			// PlayersNameGroupBox
 			// 
@@ -255,6 +293,7 @@
 			// 
 			this.PlayerTwoName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.PlayerTwoName.Location = new System.Drawing.Point(144, 49);
+			this.PlayerTwoName.MaxLength = 20;
 			this.PlayerTwoName.Name = "PlayerTwoName";
 			this.PlayerTwoName.Size = new System.Drawing.Size(187, 24);
 			this.PlayerTwoName.TabIndex = 15;
@@ -265,6 +304,7 @@
 			// 
 			this.PlayerOneName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.PlayerOneName.Location = new System.Drawing.Point(144, 19);
+			this.PlayerOneName.MaxLength = 20;
 			this.PlayerOneName.Name = "PlayerOneName";
 			this.PlayerOneName.Size = new System.Drawing.Size(187, 24);
 			this.PlayerOneName.TabIndex = 14;
@@ -308,7 +348,7 @@
 			// 
 			this.PlayerTwoXRadioButton.AutoSize = true;
 			this.PlayerTwoXRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PlayerTwoXRadioButton.Location = new System.Drawing.Point(178, 28);
+			this.PlayerTwoXRadioButton.Location = new System.Drawing.Point(169, 27);
 			this.PlayerTwoXRadioButton.Name = "PlayerTwoXRadioButton";
 			this.PlayerTwoXRadioButton.Size = new System.Drawing.Size(107, 24);
 			this.PlayerTwoXRadioButton.TabIndex = 15;
@@ -320,7 +360,7 @@
 			this.PlayerOneXRadioButton.AutoSize = true;
 			this.PlayerOneXRadioButton.Checked = true;
 			this.PlayerOneXRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PlayerOneXRadioButton.Location = new System.Drawing.Point(42, 28);
+			this.PlayerOneXRadioButton.Location = new System.Drawing.Point(8, 27);
 			this.PlayerOneXRadioButton.Name = "PlayerOneXRadioButton";
 			this.PlayerOneXRadioButton.Size = new System.Drawing.Size(108, 24);
 			this.PlayerOneXRadioButton.TabIndex = 14;
@@ -332,7 +372,7 @@
 			// 
 			this.StartPlayerGroupBox.Controls.Add(this.PlayerTwoStartRadioButton);
 			this.StartPlayerGroupBox.Controls.Add(this.PlayerOneStartRadioButton);
-			this.StartPlayerGroupBox.Location = new System.Drawing.Point(330, 226);
+			this.StartPlayerGroupBox.Location = new System.Drawing.Point(330, 212);
 			this.StartPlayerGroupBox.Name = "StartPlayerGroupBox";
 			this.StartPlayerGroupBox.Size = new System.Drawing.Size(337, 71);
 			this.StartPlayerGroupBox.TabIndex = 17;
@@ -343,7 +383,7 @@
 			// 
 			this.PlayerTwoStartRadioButton.AutoSize = true;
 			this.PlayerTwoStartRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PlayerTwoStartRadioButton.Location = new System.Drawing.Point(178, 28);
+			this.PlayerTwoStartRadioButton.Location = new System.Drawing.Point(169, 27);
 			this.PlayerTwoStartRadioButton.Name = "PlayerTwoStartRadioButton";
 			this.PlayerTwoStartRadioButton.Size = new System.Drawing.Size(107, 24);
 			this.PlayerTwoStartRadioButton.TabIndex = 15;
@@ -355,7 +395,7 @@
 			this.PlayerOneStartRadioButton.AutoSize = true;
 			this.PlayerOneStartRadioButton.Checked = true;
 			this.PlayerOneStartRadioButton.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.PlayerOneStartRadioButton.Location = new System.Drawing.Point(42, 28);
+			this.PlayerOneStartRadioButton.Location = new System.Drawing.Point(9, 27);
 			this.PlayerOneStartRadioButton.Name = "PlayerOneStartRadioButton";
 			this.PlayerOneStartRadioButton.Size = new System.Drawing.Size(108, 24);
 			this.PlayerOneStartRadioButton.TabIndex = 14;
@@ -384,7 +424,7 @@
 			this.WinsLabelForPlayerTwo.AutoSize = true;
 			this.WinsLabelForPlayerTwo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.WinsLabelForPlayerTwo.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.WinsLabelForPlayerTwo.Location = new System.Drawing.Point(209, 322);
+			this.WinsLabelForPlayerTwo.Location = new System.Drawing.Point(258, 326);
 			this.WinsLabelForPlayerTwo.Name = "WinsLabelForPlayerTwo";
 			this.WinsLabelForPlayerTwo.Size = new System.Drawing.Size(124, 20);
 			this.WinsLabelForPlayerTwo.TabIndex = 20;
@@ -406,42 +446,11 @@
 			this.WinsLabelForDraw.AutoSize = true;
 			this.WinsLabelForDraw.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.WinsLabelForDraw.ForeColor = System.Drawing.SystemColors.ControlText;
-			this.WinsLabelForDraw.Location = new System.Drawing.Point(414, 322);
+			this.WinsLabelForDraw.Location = new System.Drawing.Point(525, 326);
 			this.WinsLabelForDraw.Name = "WinsLabelForDraw";
 			this.WinsLabelForDraw.Size = new System.Drawing.Size(54, 20);
 			this.WinsLabelForDraw.TabIndex = 21;
 			this.WinsLabelForDraw.Text = "Draw: ";
-			// 
-			// playWithBotToolStripMenuItem
-			// 
-			this.playWithBotToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.easyToolStripMenuItem,
-            this.mediumToolStripMenuItem,
-            this.impossibleToolStripMenuItem});
-			this.playWithBotToolStripMenuItem.Name = "playWithBotToolStripMenuItem";
-			this.playWithBotToolStripMenuItem.Size = new System.Drawing.Size(88, 20);
-			this.playWithBotToolStripMenuItem.Text = "Play with Bot";
-			// 
-			// easyToolStripMenuItem
-			// 
-			this.easyToolStripMenuItem.Name = "easyToolStripMenuItem";
-			this.easyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.easyToolStripMenuItem.Text = "Easy";
-			this.easyToolStripMenuItem.Click += new System.EventHandler(this.easyToolStripMenuItem_Click);
-			// 
-			// mediumToolStripMenuItem
-			// 
-			this.mediumToolStripMenuItem.Name = "mediumToolStripMenuItem";
-			this.mediumToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.mediumToolStripMenuItem.Text = "Medium";
-			this.mediumToolStripMenuItem.Click += new System.EventHandler(this.mediumToolStripMenuItem_Click);
-			// 
-			// impossibleToolStripMenuItem
-			// 
-			this.impossibleToolStripMenuItem.Name = "impossibleToolStripMenuItem";
-			this.impossibleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.impossibleToolStripMenuItem.Text = "Impossible";
-			this.impossibleToolStripMenuItem.Click += new System.EventHandler(this.impossibleToolStripMenuItem_Click);
 			// 
 			// MainForm
 			// 
@@ -455,7 +464,6 @@
 			this.Controls.Add(this.StartPlayerGroupBox);
 			this.Controls.Add(this.PlayerXGroupBox);
 			this.Controls.Add(this.PlayersNameGroupBox);
-			this.Controls.Add(this.label1);
 			this.Controls.Add(this.menuStrip1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
 			this.MainMenuStrip = this.menuStrip1;
@@ -486,8 +494,6 @@
 		private System.Windows.Forms.ToolStripMenuItem gameToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem startGameToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem resetGameToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem aboutTicTacToeToolStripMenuItem;
 		private System.Windows.Forms.Button Button1;
 		private System.Windows.Forms.Button Button3;
 		private System.Windows.Forms.Button Button2;
@@ -497,7 +503,6 @@
 		private System.Windows.Forms.Button Button8;
 		private System.Windows.Forms.Button Button9;
 		private System.Windows.Forms.Button Button7;
-		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.GroupBox PlayersNameGroupBox;
 		private System.Windows.Forms.TextBox PlayerTwoName;
 		private System.Windows.Forms.TextBox PlayerOneName;
@@ -517,6 +522,7 @@
 		private System.Windows.Forms.ToolStripMenuItem easyToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem mediumToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem impossibleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
 	}
 }
 
